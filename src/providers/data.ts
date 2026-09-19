@@ -35,6 +35,10 @@ const mockSubjects: Subject[] = [
 
 
 export const dataProvider: DataProvider = {
+  /**
+   * Resolves to all mock subjects for the `subjects` resource and an empty
+   * result for other resources. Pagination, filters, and sorters are ignored.
+   */
   getList: async <TData extends BaseRecord = BaseRecord>({ resource }:
     GetListParams): Promise<GetListResponse<TData>> => {
     if (resource !== "subjects") {
@@ -46,9 +50,14 @@ export const dataProvider: DataProvider = {
       total: mockSubjects.length,
     }
   },
+  /** Always rejects with an `Error` because single-record retrieval is not implemented. */
   getOne: async () => { throw new Error("This function is not implemented yet.") },
+  /** Always rejects with an `Error` because record creation is not implemented. */
   create: async () => { throw new Error("This function is not implemented yet.") },
+  /** Always rejects with an `Error` because record updates are not implemented. */
   update: async () => { throw new Error("This function is not implemented yet.") },
+  /** Always rejects with an `Error` because record deletion is not implemented. */
   deleteOne: async () => { throw new Error("This function is not implemented yet.") },
+  /** Returns an empty API URL because this provider uses in-memory mock data. */
   getApiUrl: () => '',
 }

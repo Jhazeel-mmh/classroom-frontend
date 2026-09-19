@@ -12,6 +12,10 @@ import { ColumnDef } from '@tanstack/react-table'
 import { Search } from 'lucide-react'
 import React, { useMemo, useState } from 'react'
 
+/**
+ * Renders the subjects list with search and department controls, a paginated
+ * data table, and a create-subject action.
+ */
 export const SubjectsList = () => {
     const [searchQuery, setSearchQuery] = useState('');
     const [selectedDepartment, setSelectedDepartment] = useState('all');
